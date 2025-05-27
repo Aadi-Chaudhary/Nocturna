@@ -7,11 +7,17 @@
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle at top, #111 0%, #000 70%);
       color: #eee;
       font-family: 'Georgia', serif;
       overflow-x: hidden;
-      background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+
+      /* Layer: dark semi-transparent gradient + visible texture */
+      background-color: #000;
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('https://www.transparenttextures.com/patterns/dark-matter.png');
+      background-repeat: repeat;
+      background-size: auto;
     }
 
     header {
@@ -56,7 +62,7 @@
       width: 12px;
       height: 30px;
       background: #b30000;
-      border-radius: 50% 50% 70% 70% / 80% 80% 20% 20%; /* droplet shape */
+      border-radius: 50% 50% 70% 70% / 80% 80% 20% 20%;
       opacity: 0.9;
       animation: fall linear infinite;
       box-shadow: 0 0 10px #900;
