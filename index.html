@@ -3,19 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nocturna Skincare</title>
+  <title>Nocturna Skincare</title>            
   <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
-      background: radial-gradient(circle at top, #111 0%, #000 70%);
+      padding: 0;
+      background-color: #000;
+      background: radial-gradient(circle at top, #111 0%, #000 70%), url('https://www.transparenttextures.com/patterns/dark-matter.png');
       color: #eee;
       font-family: 'Pirata One', cursive;
       overflow-x: hidden;
-      background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+      width: 100%;
     }
 
-    /* Fog layers */
+    * {
+      box-sizing: border-box;
+    }
+
     .fog {
       position: fixed;
       top: 0;
@@ -29,23 +34,26 @@
       filter: blur(30px);
       z-index: 1;
     }
+
     .fog:nth-child(2) {
       animation: drift2 80s linear infinite reverse;
     }
+
     @keyframes drift {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
     @keyframes drift2 {
       0% { transform: translateX(0); }
       100% { transform: translateX(50%); }
     }
 
-    /* Blood drops */
     .drop, .splatter {
       position: absolute;
       z-index: 2;
     }
+
     .drop {
       width: 12px;
       height: 30px;
@@ -55,11 +63,13 @@
       animation: fall linear infinite;
       box-shadow: 0 0 10px #900;
     }
+
     @keyframes fall {
       0% { top: -40px; }
       90% { top: 95vh; }
       100% { top: 95vh; opacity: 0; }
     }
+
     .splatter {
       width: 30px;
       height: 30px;
@@ -70,6 +80,7 @@
       animation: splat 0.3s forwards;
       box-shadow: 0 0 15px #700;
     }
+
     @keyframes splat {
       0% { opacity: 1; transform: scale(0); }
       100% { opacity: 1; transform: scale(1.8); }
@@ -78,18 +89,20 @@
     header {
       position: relative;
       text-align: center;
-      padding: 100px 20px;
+      padding: 80px 20px 60px;
       z-index: 3;
     }
 
     header h1 {
-      font-size: 4.5rem;
+      font-size: 10vw; /* scales with screen */
       color: #b30000;
-      letter-spacing: 10px;
+      letter-spacing: 6px;
       text-transform: uppercase;
       font-family: 'UnifrakturCook', cursive;
       animation: flicker 3s infinite alternate;
+      margin: 0 0 20px;
     }
+
     @keyframes flicker {
       0%, 18%, 22%, 25%, 53%, 57%, 100% {
         text-shadow: 0 0 10px #600, 0 0 20px #900, 0 0 30px #f00;
@@ -100,26 +113,24 @@
     }
 
     header p {
-      max-width: 600px;
+      max-width: 90%;
       margin: 0 auto 20px;
       font-style: italic;
       color: #ccc;
-      z-index: 3;
-      position: relative;
+      font-size: 4vw;
     }
 
     header a {
       display: inline-block;
       background: linear-gradient(145deg, #600, #900);
       color: #fff;
-      padding: 14px 30px;
+      padding: 12px 24px;
       border-radius: 999px;
       text-decoration: none;
       box-shadow: 0 0 20px #900;
       transition: transform 0.3s, box-shadow 0.3s;
       font-family: 'Pirata One', cursive;
-      position: relative;
-      z-index: 3;
+      font-size: 4vw;
     }
 
     header a:hover {
@@ -128,7 +139,7 @@
     }
 
     section {
-      padding: 60px 20px;
+      padding: 40px 10px;
       max-width: 900px;
       margin: 0 auto;
       text-align: center;
@@ -148,7 +159,7 @@
       font-family: 'UnifrakturCook', cursive;
       color: #a00;
       text-shadow: 2px 2px 15px #500;
-      font-size: 2.5rem;
+      font-size: 8vw;
       margin-bottom: 20px;
     }
 
@@ -159,6 +170,7 @@
       border-radius: 15px;
       box-shadow: 0 0 20px #300;
       transition: transform 0.3s, box-shadow 0.3s;
+      font-size: 4vw;
     }
 
     .product:hover {
@@ -168,12 +180,19 @@
 
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 20px 10px;
       color: #666;
-      font-size: 0.9rem;
+      font-size: 3vw;
       border-top: 1px solid #333;
       z-index: 3;
       position: relative;
+    }
+
+    @media (min-width: 768px) {
+      header h1 { font-size: 4rem; }
+      header p, header a, .product { font-size: 1rem; }
+      section h2 { font-size: 2.5rem; }
+      footer { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -191,7 +210,7 @@
 
   <section id="about">
     <h2>About Nocturna</h2>
-    <p>Skincare crafted for the dark-hearted. Vegan. Hypoallergenic. Beauty that thrives under moonlight.</p>
+    <p>Skincare crafted for the dark-hearted. Vegan. Cruelty-free. Hypoallergenic. Beauty thrives under moonlight.</p>
   </section>
 
   <section id="products">
@@ -215,9 +234,8 @@
   </footer>
 
   <script>
-    // Blood drops and splatters
     const dropsContainer = document.getElementById('drops');
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 20; i++) {
       createDrop();
     }
 
@@ -248,7 +266,6 @@
       }, 400);
     }
 
-    // Scroll animations
     const sections = document.querySelectorAll('section');
     window.addEventListener('scroll', () => {
       sections.forEach(sec => {
